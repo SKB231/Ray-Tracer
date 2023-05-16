@@ -12,7 +12,7 @@ public:
     double radius;
 
     sphere() {}
-    sphere(point3 &cen, double rad)
+    sphere(point3 cen, double rad)
     {
         center = cen;
         radius = rad;
