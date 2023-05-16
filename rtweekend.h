@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 #include <memory>
+#include <cstdlib>
 
 // Common Headers
 
@@ -28,4 +29,24 @@ inline double degrees_to_radians(double degrees)
     return degrees * pi / 180.0;
 }
 
+inline double random_double()
+{
+    // Return random number in range [0, 1)
+    return rand() / double(RAND_MAX + 1);
+}
+
+inline double random_double(double min, double max)
+{
+    // Return a random number in range [min, max)
+    return min + (max - min) * random_double();
+}
+
+inline double clamp(double x, double min, double max)
+{
+    if (x < min)
+        return min;
+    if (x > max)
+        return max;
+    return x;
+}
 #endif
