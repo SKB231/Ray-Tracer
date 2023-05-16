@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <iostream>
+#include "rtweekend.h"
 
 class vec3
 {
@@ -76,7 +77,32 @@ public:
     {
         return std::sqrt(length_squared());
     }
+
+    inline static vec3 random()
+    {
+        return vec3(random_double(), random_double(), random_double());
+    }
+
+    inline static vec3 random(double min, double max)
+    {
+        return vec3(random_double(min, max), random_double(min, max), random_double(min, max));
+    }
 };
+
+/**
+ * @brief We need a way to pick a random point in a unit radius sphere. We’ll use what is usually the easiest algorithm: a rejection method. First, pick a random point in the unit cube where x, y, and z all range from −1 to +1. Reject this point and try again if the point is outside the sphere.
+ *
+ */
+vec3 random_in_unit_sphere()
+{
+    while (true)
+    {
+        auto p = vec3::random(-1, 1);
+        if (p.length_squared() >= 1)
+            continue;
+        return p;
+    }
+}
 
 // aliases:
 using point3 = vec3;

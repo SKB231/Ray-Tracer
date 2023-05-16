@@ -6,11 +6,6 @@
 #include <memory>
 #include <cstdlib>
 
-// Common Headers
-
-#include "ray.h"
-#include "vec3.h"
-
 // Usings
 
 using std::make_shared;
@@ -32,7 +27,7 @@ inline double degrees_to_radians(double degrees)
 inline double random_double()
 {
     // Return random number in range [0, 1)
-    return rand() / double(RAND_MAX + 1);
+    return rand() / double(RAND_MAX + 1.0);
 }
 
 inline double random_double(double min, double max)
@@ -49,4 +44,9 @@ inline double clamp(double x, double min, double max)
         return max;
     return x;
 }
+
+// Common Headers
+
+#include "ray.h"
+#include "vec3.h"
 #endif
