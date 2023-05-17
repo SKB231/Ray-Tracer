@@ -2,14 +2,17 @@
 #define HITTABLE_H
 
 #include "ray.h"
+#include "rtweekend.h"
+
+class material;
 
 struct hit_record
 {
     point3 p;
     vec3 normal;
     double t;
-
     bool front_face;
+    shared_ptr<material> mat_ptr;
 
     // r: the ray
     // outward_normal: The sphere's outward normal from the center point
