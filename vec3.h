@@ -89,21 +89,6 @@ public:
     }
 };
 
-/**
- * @brief We need a way to pick a random point in a unit radius sphere. We’ll use what is usually the easiest algorithm: a rejection method. First, pick a random point in the unit cube where x, y, and z all range from −1 to +1. Reject this point and try again if the point is outside the sphere.
- *
- */
-vec3 random_in_unit_sphere()
-{
-    while (true)
-    {
-        auto p = vec3::random(-1, 1);
-        if (p.length_squared() >= 1)
-            continue;
-        return p;
-    }
-}
-
 // aliases:
 using point3 = vec3;
 using color = vec3;
@@ -168,6 +153,26 @@ inline vec3 cross(const vec3 &u, const vec3 &v)
 inline std::ostream &operator<<(std::ostream &out, const vec3 &v)
 {
     return out << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2];
+}
+
+/**
+ * @brief We need a way to pick a random point in a unit radius sphere. We’ll use what is usually the easiest algorithm: a rejection method. First, pick a random point in the unit cube where x, y, and z all range from −1 to +1. Reject this point and try again if the point is outside the sphere.
+ *
+ */
+vec3 random_in_unit_sphere()
+{
+    while (true)
+    {
+        auto p = vec3::random(-1, 1);
+        if (p.length_squared() >= 1)
+            continue;
+        return p;
+    }
+}
+
+vec3 random_unit_vector()
+{
+    return unit_vector(random_in_unit_sphere());
 }
 
 #endif
